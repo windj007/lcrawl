@@ -1,4 +1,4 @@
-import json, os
+import json, os, itertools
 
 
 def load_json(filename):
@@ -60,7 +60,16 @@ class FirstCaller(object):
                 return func(*args, **kwargs)
             except Exception as ex:
                 exceptions.append(ex)
-        raise ChainException
+        raise ChainException(exceptions)
+
+
+class AllCaller(object):
+    def __init__(self, functions):
+        self.functions = functions
+
+    def __call__(self, *args, **kwargs):
+        for func in self.functions:
+            return func(*args, **kwargs)
 
 
 class DictUnion(object):
@@ -72,6 +81,15 @@ class DictUnion(object):
         for func in self.functions:
             result.update(func(*args, **kwargs))
         return result
+
+
+class CallAndChain(object):
+    def __init__(self, functions):
+        self.functions = functions
+
+    def __call__(self, *args, **kwargs):
+        return itertools.chain.from_iterable(func(*args, **kwargs)
+                                             for func in self.functions)
 
 
 def load_callable_chain(dict_list, chain_cls):

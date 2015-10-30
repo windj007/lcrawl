@@ -6,7 +6,7 @@ import scrapy
 from scrapy.exceptions import CloseSpider
 from scrapy.http import Request
 
-from lcrawl.lcrawl.loading import load_callable_chain, \
+from lcrawl.loading import load_callable_chain, \
     load_obj_and_call, DictUnion, FirstCaller 
 
 
@@ -56,3 +56,6 @@ class MainSpider(scrapy.Spider):
             yield req
         if decision.need_stop:
             raise CloseSpider()
+
+    def closed(self, reason):
+        self.decision_function.finalize()

@@ -1,11 +1,20 @@
 import argh
 
+from scrapy.crawler import CrawlerProcess
 
-def train(in_dir, ):
-    pass
+from lcrawl.loading import load_config
+from lcrawl.spiders.main import MainSpider
 
 
-if __name__ = "__main__":
+def work(crawl_config_file, **kwargs):
+    conf = load_config(crawl_config_file)
+    conf.update(kwargs)
+    process = CrawlerProcess(conf)
+    process.crawl(MainSpider)
+    process.start()
+
+
+if __name__ == "__main__":
     parser = argh.ArghParser()
-    parser.add_commands(train)
+    parser.add_commands(work)
     parser.dispatch()

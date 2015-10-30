@@ -1,3 +1,23 @@
+import json, os
+
+
+def load_json(filename):
+    with open(filename, 'r') as f:
+        return json.loads(f)
+
+
+def load_config(filename):
+    conf = load_json(filename)
+    parent_filename = conf.get('PARENT_CONFIG', None)
+    if not parent_filename is None:
+        parent_filename = os.path.join(os.path.dirname(filename),
+                                       parent_filename)
+        parent_conf = load_config(parent_filename)
+        parent_conf.update(conf)
+        conf = parent_conf
+    return conf
+
+
 def ensure_str(obj):
     if isinstance(obj, str):
         return obj

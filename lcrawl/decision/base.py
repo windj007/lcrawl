@@ -40,7 +40,7 @@ class DTWithSeeds(object):
             with open(fname, 'r') as f:
                 seeds.update(l.strip() for l in f)
         for seed in seeds:
-            url, domain = norm_url(seed)
+            url, _ = norm_url(seed)
             yield Request(url,
                           meta = {
                                   'lcrawl.labels' : self.get_initial_state(url)

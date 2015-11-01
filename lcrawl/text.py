@@ -5,8 +5,15 @@ from langid.langid import classify as get_lang
 
 
 def get_text_from_html(root):
-    return ' '.join(root.xpath('.//*[not(starts-with(local-name(), "script")) '
-                               'and not(starts-with(local-name(), "style"))]/text()'))
+    result = ' '.join(root.xpath('.//*[not(starts-with(local-name(), "script")) '
+                                 'and not(starts-with(local-name(), "style"))]/text()'))
+    if isinstance(result, unicode):
+        return result.encode('utf8')
+    return result
+
+
+def get_text_from_html_nodes(nodes):
+    return ' '.join(get_text_from_html(n) for n in nodes)
 
 
 _WORD_DIV_RE = re.compile(r'([^\W\d_]+)-\n\s*([^\W\d_]+)', re.I) # | re.U)

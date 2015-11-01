@@ -4,10 +4,18 @@ from lcrawl.loading import load_obj_and_call
 
 
 class Transition(object):
-    def __init__(self, url, labels, features):
-        self.url = url
+    def __init__(self, from_url, to_url, labels, features):
+        self.from_url = from_url
+        self.to_url = to_url
         self.labels = labels
         self.features = features
+
+    def as_dict(self, base = {}):
+        base.update(self.features)
+        base['FROM_URL'] = self.from_url
+        base['TO_URL'] = self.to_url
+        base['LABELS'] = self.labels
+        return base
 
 
 class PluggableTransitionExtractorMixin(object):
@@ -19,20 +27,20 @@ class PluggableTransitionExtractorMixin(object):
         result = super(PluggableTransitionExtractorMixin, self).get_transition(response,
                                                                                link_obj)
         for func in self.functions:
-            result = func(response, link_obj, result)
             if result is None:
                 break
+            result = func(response, link_obj, result)
         return result
 
 
 class NormalizeUrls(object):
     def __call__(self, response, a, result):
-        result.url = response.urljoin(result.url) 
+        result.to_url = response.urljoin(result.to_url) 
         return result
 
 
 class RestrictSameDomain(object):
     def __call__(self, response, a, result):
-        req_domain = urlparse(response.request.url).hostname
-        resp_domain = urlparse(result.url)
+        req_domain = urlparse(response.from_url).hostname
+        resp_domain = urlparse(result.to_url)
         return result if req_domain == resp_domain else None

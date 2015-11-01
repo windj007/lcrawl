@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argh
 
 from scrapy.crawler import CrawlerProcess
@@ -16,5 +18,5 @@ def work(crawl_config_file, **kwargs):
 
 if __name__ == "__main__":
     parser = argh.ArghParser()
-    parser.add_commands(work)
+    parser.add_commands([work])
     parser.dispatch()

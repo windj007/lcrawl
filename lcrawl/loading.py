@@ -3,7 +3,12 @@ import json, os, itertools
 
 def load_json(filename):
     with open(filename, 'r') as f:
-        return json.loads(f)
+        return json.load(f)
+
+
+def save_json(obj, filename):
+    with open(filename, 'w') as f:
+        json.dump(obj, f, indent = 4)
 
 
 def load_config(filename):
@@ -93,4 +98,4 @@ class CallAndChain(object):
 
 
 def load_callable_chain(dict_list, chain_cls):
-    return chain_cls(load_obj_and_call(d) for d in dict_list)
+    return chain_cls([load_obj_and_call(d) for d in dict_list])

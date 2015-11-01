@@ -1,10 +1,15 @@
-import os
+import os, logging
 from collections import defaultdict
+from pandas import DataFrame
 
 from scrapy.http import Request
 
 from lcrawl.decision.base import BaseDecisionFunction, Decision
 from lcrawl.utils import norm_url
+from lcrawl.loading import save_json
+
+
+logger = logging.getLogger()
 
 
 class SiteDescription(object):
@@ -37,17 +42,31 @@ class TrainPageInfo(object):
         self.page_features = page_features
         self.transitions = transitions
 
+    def as_dict(self):
+        result = dict(**self.page_features)
+        result['SITE'] = self.site
+        result['URL'] = self.url
+        for label in self.labels:
+            result[label] = 1
+        return result
+
 
 UNKNOWN_LABEL = 'UNKNOWN'
 UNKNOWN_LABELS = frozenset([UNKNOWN_LABEL])
 
 
-class BaseTrainDF(BaseDecisionFunction):
+PAGES_DATA_FILENAME = "pages.csv"
+TRANSITIONS_DATA_FILENAME = "transitions.csv"
+
+
+class CollectTrainData(BaseDecisionFunction):
     def __init__(self, sites_dir, out_dir, *args, **kwargs):
         self.sites = load_descriptions_from_dir(sites_dir)
-        self.saved_pages = defaultdict(list)
+        self.saved_pages = []
+        self.saved_urls = set()
         self.requested_pages = set()
         self.out_dir = out_dir
+        self.finalized = False
 
     def get_initial_requests(self):
         self.pages_to_visit = {}
@@ -63,24 +82,39 @@ class BaseTrainDF(BaseDecisionFunction):
 
     def decide(self, response, page_features, transitions):
         site = response.meta['lcrawl.site']
-        already_saved = response.url in self.saved_pages
-        self.saved_pages[response.url].append(TrainPageInfo(response.url,
-                                                            site,
-                                                            response.meta['lcrawl.labels'],
-                                                            page_features,
-                                                            transitions))
+        already_saved = response.url in self.saved_urls
+        self.saved_urls.add(response.url)
+        transitions = list(transitions)
+        for trans in transitions:
+            trans.labels = self.pages_to_visit.get(trans.to_url, UNKNOWN_LABELS)
+        self.saved_pages.append(TrainPageInfo(response.url,
+                                              site,
+                                              response.meta['lcrawl.labels'],
+                                              page_features,
+                                              transitions))
         if already_saved:
             next_requests = []
         else:
-            next_requests = (Request(trans.url,
+            next_requests = (Request(trans.to_url,
                                      meta = {
                                              'lcrawl.site' : site,
-                                             'lcrawl.labels' : self.pages_to_visit.get(trans.url,
-                                                                                       UNKNOWN_LABELS)
+                                             'lcrawl.labels' : trans.labels
                                              })
                              for trans in transitions
-                             if not trans.url in self.requested_pages)
-        return Decision(next_requests, [], True)
+                             if not trans.to_url in self.requested_pages)
+        return Decision(next_requests, [], False)
 
     def finalize(self):
-        pass
+        if self.finalized:
+            return
+        self.finalized = True
+
+        pages_fpath = os.path.join(self.out_dir, PAGES_DATA_FILENAME)
+        pages_data = DataFrame(data = [p.as_dict() for p in self.saved_pages])
+        pages_data.to_csv(pages_fpath, encoding = 'utf8')
+
+        transitions_fpath = os.path.join(self.out_dir, TRANSITIONS_DATA_FILENAME)
+        transitions_data = DataFrame(data = [t.as_dict({ "FROM_LABELS" : p.labels })
+                                             for p in self.saved_pages
+                                             for t in p.transitions])
+        transitions_data.to_csv(transitions_fpath, encoding = 'utf8')

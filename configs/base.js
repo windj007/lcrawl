@@ -1,8 +1,12 @@
 {
 	"PREPROCESSORS" : [
-	                   { "constructor" : "lcrawl.preprocessors.web.HtmlParser" }
-    ],
-    "PAGE_ANALYZERS" : [],
+	                   { "constructor" : "lcrawl.preprocessors.html.HtmlParser" }
+	                   ],
+    "PAGE_ANALYZERS" : [
+                        { "constructor" : "lcrawl.page_analyzers.base.ContentTypeExtractor" },
+                        { "constructor" : "lcrawl.page_analyzers.base.RawContentAssigner" },
+                        { "constructor" : "lcrawl.page_analyzers.html.HtmlTextExtractor" }
+                        ],
 	"TRANSITION_EXTRACTORS" : [
 	                           {
 	                        	   "constructor" : "lcrawl.transition.html.PluggableHtmlLinkTransitionExtractor",
@@ -16,8 +20,8 @@
 	                           ],
 	"USER_AGENT" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36",
 	"CONCURRENT_REQUESTS" : 16,
-	"DOWNLOAD_DELAY" : 3,
-	"CONCURRENT_REQUESTS_PER_DOMAIN" : 2
+	"DOWNLOAD_DELAY" : 1,
+	"CONCURRENT_REQUESTS_PER_DOMAIN" : 3,
 	"COOKIES_ENABLED" : true,
 	"TELNETCONSOLE_ENABLED" : false,
 	"AUTOTHROTTLE_ENABLED" : true,

@@ -1,0 +1,7 @@
+root http://www.rudn.ru/
+abit http://www.rudn.ru/?pagec=2
+final,min_req http://www.rudn.ru/file.php?id=4082
+konkurs http://www.rudn.ru/?pagec=5359
+konkurs_res_list http://www.rudn.ru/index.php?pagec=5356
+final,konkurs_res_detailed http://www.rudn.ru/abitur_10/3099-1-1.html
+final,dorm http://www.rudn.ru/file.php?id=5053

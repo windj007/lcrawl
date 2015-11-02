@@ -6,6 +6,7 @@ from scrapy.crawler import CrawlerProcess
 
 from lcrawl.loading import load_config
 from lcrawl.spiders.main import MainSpider
+from lcrawl.decision.train import convert_pickled_pages_to_csv_dataset
 
 
 def work(crawl_config_file, **kwargs):
@@ -18,5 +19,6 @@ def work(crawl_config_file, **kwargs):
 
 if __name__ == "__main__":
     parser = argh.ArghParser()
-    parser.add_commands([work])
+    parser.add_commands([work,
+                         convert_pickled_pages_to_csv_dataset])
     parser.dispatch()

@@ -5,7 +5,8 @@ from langid.langid import classify as get_lang
 
 
 def get_text_from_html(root):
-    result = ' '.join(root.xpath('.//*[not(starts-with(local-name(), "script")) '
+    result = ' '.join(root.xpath('./text() | '
+                                 './/*[not(starts-with(local-name(), "script")) '
                                  'and not(starts-with(local-name(), "style"))]/text()'))
     if isinstance(result, unicode):
         return result.encode('utf8')

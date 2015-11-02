@@ -1,0 +1,9 @@
+root http://www.rsuh.ru/
+abit http://www.rsuh.ru/applicant/admissions-2015/
+final,welcome_day http://www.rsuh.ru/applicant/dod/
+final,min_req http://www.rsuh.ru/applicant/admissions-2015/the-list-of-entrance-examinations-bachelor-and-diploma.php
+final,control_num http://www.rsuh.ru/upload/main/priem15/kontrol_cifri_2015_bak-spec_v9.pdf
+final,dorm http://www.rsuh.ru/applicant/admissions-2015/place-in-a-hostel.php
+payment_intro http://www.rsuh.ru/applicant/section_139/
+final,payment http://www.rsuh.ru/upload/main/ypoy/%D0%9F%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%20%D0%BE%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%2001%20%D1%81%D0%B5%D0%BD%D1%82%D1%8F%D0%B1%D1%80%D1%8F%202015%20%D0%B3.pdf
+final,payment http://www.rsuh.ru/upload/main/ypoy/%D0%94%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BA%D0%B0%D0%B7%D1%83%20%D0%BE%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20_%201%20%D0%BA%D1%83%D1%80%D1%81%20%D0%B2%202015-2016%20%D1%83%D1%87.%D0%B3%D0%BE%D0%B4%D1%83.pdf

@@ -1,0 +1,7 @@
+root http://mgei.ru/
+abit http://mgei.ru/osnovnoe_menyu/postuplenie-v-mgei/
+final,welcome_day http://mgei.ru/osnovnoe_menyu/postuplenie-v-mgei/dni_otkrytyh_dverej/
+payment_intro http://mgei.ru/osnovnoe_menyu/postuplenie-v-mgei/stoimost_obucheniya/
+final,payment http://mgei.ru/files/prikaz_stoimost_obuch_vo_2015.pdf
+final,konkurs_res_detailed http://mgei.ru/files/konkurs_spisok_postup_28_08_15_itog.pdf
+final,min_req http://mgei.ru/files/perech_vstup_isp_vo_kazhd_konk_vo_2015.pdf

@@ -5,3 +5,7 @@ konkurs http://www.rudn.ru/?pagec=5359
 konkurs_res_list http://www.rudn.ru/index.php?pagec=5356
 final,konkurs_res_detailed http://www.rudn.ru/abitur_10/3099-1-1.html
 final,dorm http://www.rudn.ru/file.php?id=5053
+payment_intro http://www.rudn.ru/sveden/paid_edu
+final,payment http://www.rudn.ru/files_upload/dokumenti/Stoimost_obuch_11.06.15
+final,control_num http://www.rudn.ru/file.php?id=4091
+final,welcome_day http://www.rudn.ru/?pagec=3457

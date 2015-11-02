@@ -14,7 +14,8 @@ class Transition(object):
         base.update(self.features)
         base['FROM_URL'] = self.from_url
         base['TO_URL'] = self.to_url
-        base['LABELS'] = self.labels
+        for l in self.labels:
+            base["LABEL__%s" % l] = 1.0
         return base
 
 

@@ -1,0 +1,11 @@
+root http://www.linguanet.ru/
+abit http://www.linguanet.ru/entrants/
+abit http://www.linguanet.ru/entrants/Priem-2015/infopr-2015/
+final,control_num http://www.linguanet.ru/entrants/Priem-2015/infopr-2015/Kontrnumber-2015aR4.pdf
+final,min_req http://www.linguanet.ru/entrants/Priem-2015/infopr-2015/minball-bak2015R.pdf
+final,min_req http://www.linguanet.ru/entrants/Priem-2015/infopr-2015/minball-bak2015R.pdf
+final,konkurs_res_detailed http://www.linguanet.ru/entrants/Priem-2014/infopriem-2014/konkurs-2014.pdf
+final,konkurs_res_detailed http://www.linguanet.ru/entrants/Priem-2014/infopriem-2014/konkurs-2013.pdf
+final,konkurs_res_detailed http://www.linguanet.ru/entrants/Priem-2013/infopriem-2013/konkurs-2012.pdf
+final,konkurs_res_detailed http://www.linguanet.ru/entrants/Priem-2012/infopriem-2012/konkurs-2011.pdf
+final,dorm http://www.linguanet.ru/entrants/infopriem-2011/ngilyo-11.pdf

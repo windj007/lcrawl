@@ -39,14 +39,13 @@ class PluggableHtmlLinkTransitionExtractor(PluggableTransitionExtractorMixin,
 class LinkLabelTokens(object):
     DEFAULT_LANGUAGE = 'ru'
     def __init__(self,
-                 prefix = "LABEL",
+                 prefix = "TEXT_BOW",
                  default_language = DEFAULT_LANGUAGE):
         self.prefix = prefix
         self.default_language = default_language
 
     def __call__(self, response, a, result):
         text = get_text_from_html(a)
-        logger.debug('Got text %r' % text)
         this_features = defaultdict(float)
         norm = 0.0
         for token in parse_string(text, self.default_language):

@@ -1,0 +1,7 @@
+root http://xn--c1arjr.xn--p1ai/
+abit http://xn--c1arjr.xn--p1ai/postuplenie/
+abit http://xn--c1arjr.xn--p1ai/postuplenie/bakalavriat/
+final,konkurs_res_detailed http://xn--c1arjr.xn--p1ai/postuplenie/bakalavriat/konkurs-prohodnoy-godu/
+abit http://xn--c1arjr.xn--p1ai/postuplenie/priemnaya-komissiya/
+payment_intro http://xn--c1arjr.xn--p1ai/postuplenie/priemnaya-komissiya/platnyie-obrazovatelnyie-uslugi/
+final,payment http://xn--c1arjr.xn--p1ai/wp-content/uploads/2014/11/Prikaz-----373-ot-29.05.2015.pdf
